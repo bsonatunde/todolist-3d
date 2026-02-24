@@ -6,6 +6,7 @@ import { Mesh } from "three";
 
 interface ProgressCubeProps {
   ratio: number;
+  className?: string;
 }
 
 function Cube({ ratio }: ProgressCubeProps) {
@@ -30,9 +31,9 @@ function Cube({ ratio }: ProgressCubeProps) {
   );
 }
 
-export default function ProgressCube({ ratio }: ProgressCubeProps) {
+export default function ProgressCube({ ratio, className = "" }: ProgressCubeProps) {
   return (
-    <Canvas className="w-full h-40">
+    <Canvas className={className}>
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
       <Cube ratio={ratio} />

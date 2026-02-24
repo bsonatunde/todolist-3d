@@ -2,23 +2,25 @@
 
 import { useState } from "react";
 import {
-	LayoutDashboard,
-	Folder,
-	Users,
-	Calendar,
-	Settings,
+	// icons used throughout the page
+	LayoutGrid,
+	Plus,
 	ChevronDown,
 	ChevronRight,
 	Search,
 	Bell,
 	Calendar as CalendarIcon,
-	LayoutGrid,
-	Plus,
 	SlidersHorizontal,
 	ArrowUpDown,
 	MoreHorizontal,
 	Sun,
 	Moon,
+	User,
+	BarChart3,
+	Cloud,
+	BookOpen,
+	Sliders,
+	LogOut,
 } from "lucide-react";
 import Image from "next/image";
 import ProgressCube from "../components/ProgressCube";
@@ -77,54 +79,53 @@ export default function Page() {
 
 function Dashboard() {
 	const { dark, setDark } = useTheme();
-	const [active, setActive] = useState("projects");
 	const { columns, completeTask, completionRatio } = useColumns();
 
 	return (
 		<div>
 			<div className="flex min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
 				{/* ========== ICON SIDEBAR ========== */}
-				<div className="w-16 bg-gray-900 dark:bg-black text-white flex flex-col items-center py-6 space-y-8">
-					<div className="text-2xl font-bold">⋮</div>
+				<div className="w-16 bg-[#111111] text-gray-400 flex flex-col items-center py-6">
+					{/* Top menu dots */}
+					<MoreHorizontal
+						size={22}
+						className="mb-8 text-gray-300"
+					/>
 
-					<button
-						onClick={() => setActive("dashboard")}
-						className={`p-3 rounded-xl ${
-							active === "dashboard" ? "bg-gray-700" : ""
-						}`}
-					>
-						<LayoutDashboard size={20} />
-					</button>
+					{/* Logo */}
+					<div className="mb-8">
+						<ProgressCube ratio={completionRatio} className="w-8 h-8" />
+					</div>
 
-					<button
-						onClick={() => setActive("projects")}
-						className={`p-3 rounded-xl ${
-							active === "projects" ? "bg-gray-700" : ""
-						}`}
-					>
-						<Folder size={20} />
-					</button>
+					{/* Projects (Active) */}
+					<div className="bg-gray-800 p-3 rounded-xl mb-6">
+						<LayoutGrid size={20} className="text-white"/>
+					</div>
 
-					<button
-						onClick={() => setActive("team")}
-						className={`p-3 rounded-xl ${
-							active === "team" ? "bg_gray-700" : ""
-						}`}
-					>
-						<Users size={20} />
-					</button>
+					{/* User */}
+					<User size={20} className="mb-6 hover:text-white cursor-pointer"/>
 
-					<button
-						onClick={() => setActive("calendar")}
-						className={`p-3 rounded-xl ${
-							active === "calendar" ? "bg-gray-700" : ""
-						}`}
-					>
-						<Calendar size={20} />
-					</button>
+					{/* Calendar */}
+					<CalendarIcon size={20} className="mb-6 hover:text-white cursor-pointer"/>
 
+					{/* Analytics */}
+					<BarChart3 size={20} className="mb-6 hover:text-white cursor-pointer"/>
+
+					{/* Cloud */}
+					<Cloud size={20} className="mb-6 hover:text-white cursor-pointer"/>
+
+					{/* Book */}
+					<BookOpen size={20} className="mb-6 hover:text-white cursor-pointer"/>
+
+					{/* Sliders */}
+					<Sliders size={20} className="mb-6 hover:text-white cursor-pointer"/>
+
+					{/* Bottom Logout */}
 					<div className="mt-auto">
-						<Settings size={20} />
+						<LogOut
+							size={20}
+							className="hover:text-white cursor-pointer"
+						/>
 					</div>
 				</div>
 
@@ -269,11 +270,6 @@ function Dashboard() {
 								New template
 							</button>
 						</div>
-					</div>
-
-					{/* 3D widget */}
-					<div className="mb-8">
-						<ProgressCube ratio={completionRatio} />
 					</div>
 
 					{/* board grid will follow below */}
